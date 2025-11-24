@@ -1,0 +1,29 @@
+# Junior Data Scientist - Trader Behavior Insights Report
+
+## 1. Objective
+To explore and analyze the relationship between daily aggregated trader performance (Profitability and Volume) and the daily Bitcoin Market Sentiment (Fear/Greed Index). The goal is to uncover hidden trends that can drive smarter trading strategies.
+
+## 2. Methodology
+1.  **Data Preparation:** The daily sentiment data was loaded and the `date` column was converted to datetime objects. The granular historical trader data was loaded, timestamps were converted, and the data was **aggregated daily** to calculate the sum of `Closed PnL` (Daily Profitability) and `Size USD` (Daily Volume).
+2.  **Data Merging:** The daily performance metrics were merged with the daily sentiment classifications using an inner join on the date index.
+3.  **Analysis:** The merged data was grouped by `Sentiment_Classification` to calculate the **average Daily PnL** and **average Daily Volume** across different sentiment states.
+
+## 3. Key Findings
+
+### 3.1 Profitability vs. Sentiment
+* **Contrarian Signal:** The highest average daily profits were generated during periods of **Fear** and **Extreme Fear**.
+* **Detrimental Periods:** The largest average daily losses were experienced during periods of **Greed** and **Extreme Greed**.
+
+### 3.2 Volume vs. Sentiment
+* **Greed-Driven Activity:** The highest trading volume occurred during periods of **Extreme Greed** and **Greed**.
+* **Fear-Driven Caution:** Lower trading volume occurred during periods of **Fear**, which, counter-intuitively, were the most profitable days.
+*(Visualizations for both findings are available in the 'outputs/' folder.)*
+
+## 4. Strategic Implications (Smarter Trading Strategy)
+
+The analysis reveals a **strong contrarian behavior** in this group of traders: they are successful when cautious but highly unsuccessful when aggressive.
+
+| Market Sentiment | Current Trader Behavior | Result | Strategic Recommendation |
+| :--- | :--- | :--- | :--- |
+| **Fear / Extreme Fear** | Low Volume / Cautious | **High Profitability** | **SCALE UP:** Increase capital allocation and trade size when sentiment drops into the "Fear" category, as the existing strategy is highly effective in this environment. |
+| **Greed / Extreme Greed** | High Volume / Aggressive | **High Losses** | **SCALE DOWN:** Drastically reduce or pause trading when sentiment reaches "Greed" or "Extreme Greed" to mitigate the largest source of net losses. The current aggressive approach during these times is detrimental. |
